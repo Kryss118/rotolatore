@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import CarouselComponent from '../components/CarouselComponent';
+import SearchInput from '../components/SearchInput';
 
 const HomeScreen = () => {
     const [searchValue, setSearch] = useState('');
 
     return (
-    <View>
-        <TextInput
-            onChangeText={(text) => {
-                setSearch(text);
-                console.log(searchValue);
-            }}
-            value={searchValue}
-            placeholder="Cerca Ristoranti"
-        />
+    <View style={styles.containerStyle}>
+       <SearchInput />
         <CarouselComponent></CarouselComponent>
     </View>
     )
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    containerStyle: {
+        backgroundColor: '#ffffff'
+    }
+});
 
 export default HomeScreen;
