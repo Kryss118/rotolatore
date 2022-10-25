@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import CarouselComponent from '../components/CarouselComponent';
 import SearchInput from '../components/SearchInput';
 
@@ -8,7 +8,13 @@ const HomeScreen = () => {
 
     return (
     <View style={styles.containerStyle}>
-       <SearchInput />
+       <SearchInput 
+            placeholder={"Cerca Ristoranti"}
+            value={searchValue}
+            onChange={(newTerm) => setSearch(newTerm)}
+            onEnd={() => console.log('Ho scritto')}
+       />
+       <Text>{searchValue}</Text>
         <CarouselComponent></CarouselComponent>
     </View>
     )

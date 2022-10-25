@@ -3,16 +3,23 @@ import {View, TextInput, StyleSheet} from 'react-native';
 import { Fontisto } from '@expo/vector-icons'; 
 
 
-const SearchInput = () => {
+const SearchInput = ({value, onChange, onEnd, placeholder}) => {
     return (
         <View style={styles.inputContainer}>
             <Fontisto 
                 style={styles.inputIcon} 
-                name="search" size={18} 
+                name="search" 
+                size={18} 
                 color="#848488" 
             />
             <TextInput 
                 style={styles.textInput}
+                placeholder={placeholder}
+                onChangeText={onChange}
+                value={value}
+                autoCorrect={false}
+                autoCapitalize={'none'}
+                onEndEditing={onEnd}
             />
         </View>
     )
@@ -31,7 +38,8 @@ const styles = StyleSheet.create({
         margin: 10
     },
     textInput: {
-        flex: 1
+        flex: 1,
+        color: "#848488"
     }
 });
 
