@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import CarouselComponent from '../components/CarouselComponent';
 import SearchInput from '../components/SearchInput';
@@ -7,15 +7,27 @@ import yelp from '../api/yelp';
 const HomeScreen = () => {
     const [searchValue, setSearch] = useState('');
     const [results, setResults] = useState([]);
+    const [errorMessage, setError] = useState(false);
 
-    const searchApi = async () => {
-        const response = await yelp.get('/search', {params: {
-            term: searchValue,
-            location: 'Italy',
-            limit: 50
-        }});
-        setResults(response.data.businesses);
+    const searchApi = async (value) => {
+        try {
+            const response = await yelp.get('/search', {params: {
+                term: value,
+                location: 'Italy',
+                limit: 50
+            }});
+            setResults(response.data.businesses);
+            setError(false)
+        }
+        catch(e){
+            setError(true);
+        }
     }
+
+    useEffect(() => {
+        searchApi(null);
+    }, []);
+
 
     return (
     <View style={styles.containerStyle}>
@@ -23,8 +35,9 @@ const HomeScreen = () => {
             placeholder={"Cerca Ristoranti"}
             value={searchValue}
             onChange={(newTerm) => setSearch(newTerm)}
-            onEnd={searchApi}
+            onEnd={() => searchApi(searchValue)}
        />
+       {errorMessage ? <Text>Qualcosa è andato storto</Text> : null}
        <Text>La ricerca ha prodotto {results.length} risultati</Text>
     </View>
     )
