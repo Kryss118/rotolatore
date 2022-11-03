@@ -24,6 +24,8 @@ const HomeScreen = () => {
         }
     }
 
+    //TODO: implementazione hook
+
     useEffect(() => {
         searchApi(null);
     }, []);
