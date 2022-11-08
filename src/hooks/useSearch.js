@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import yelp from '../api/yelp';
 
 export default () => {
@@ -9,7 +9,7 @@ export default () => {
         try {
             const response = await yelp.get('/search', {params: {
                 term: value,
-                location: 'Italy',
+                location: 'New York',
                 limit: 50
             }});
             setResults(response.data.businesses);
@@ -19,6 +19,10 @@ export default () => {
             setError(true);
         }
     }
+
+    useEffect(() => {
+        searchApi(null);
+    }, []);
 
     return [results, errorMessage, searchApi];
 }

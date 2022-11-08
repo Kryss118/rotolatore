@@ -1,35 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import CarouselComponent from '../components/CarouselComponent';
 import SearchInput from '../components/SearchInput';
 import yelp from '../api/yelp';
+import useSearch from '../hooks/useSearch';
+import CarouselComponent from '../components/CarouselComponent';
 
 const HomeScreen = () => {
     const [searchValue, setSearch] = useState('');
-    const [results, setResults] = useState([]);
-    const [errorMessage, setError] = useState(false);
+    const [results, errorMessage, searchApi] = useSearch();
 
-    const searchApi = async (value) => {
-        try {
-            const response = await yelp.get('/search', {params: {
-                term: value,
-                location: 'Italy',
-                limit: 50
-            }});
-            setResults(response.data.businesses);
-            setError(false)
-        }
-        catch(e){
-            setError(true);
-        }
+    const filterByPrice = (price) => {
+            return results.filter(result => {
+                return result.price === price;
+        });
     }
 
-    //TODO: implementazione hook
-
-    useEffect(() => {
-        searchApi(null);
-    }, []);
-
+    const filterByRating = (min, max) => {
+        console.log(results)
+        return results.filter(result => {
+            return result.rating > min && result.rating <= max
+        })
+    }
 
     return (
     <View style={styles.containerStyle}>
@@ -41,6 +32,10 @@ const HomeScreen = () => {
        />
        {errorMessage ? <Text>Qualcosa è andato storto</Text> : null}
        <Text>La ricerca ha prodotto {results.length} risultati</Text>
+
+       <CarouselComponent title="Miglior Qualità Prezzo" results={filterByPrice('$')} />   
+       <CarouselComponent title="Un po' costosi" results={filterByPrice('$$')}/>   
+       <CarouselComponent title="Hai voglia di spendere?" results={filterByPrice('$$$' && '$$$$')}/>   
     </View>
     )
 };
@@ -51,4 +46,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default HomeScreen;
+export default HomeScreen;  
