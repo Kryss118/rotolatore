@@ -31,7 +31,7 @@ const HomeScreen = () => {
             onEnd={() => searchApi(searchValue)}
        />
        {errorMessage ? <Text>Qualcosa è andato storto</Text> : null}
-       <Text>La ricerca ha prodotto {results.length} risultati</Text>
+      
 
        <CarouselComponent title="Miglior Qualità Prezzo" results={filterByPrice('$')} />   
        <CarouselComponent title="Un po' costosi" results={filterByPrice('$$')}/>   

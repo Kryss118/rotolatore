@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     },
     infoMeta: {
        flexDirection: 'row',
+       marginBottom: 10
     },
     label: {
         fontWeight: '400', 
