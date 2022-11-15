@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View, 
     Text, 
@@ -25,6 +25,11 @@ const CarouselComponent = ({title, results, navigation}) => {
             keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}
+            ListEmptyComponent={() => (
+                <View style={styles.emptyContainer}>
+                    <Text style={styles.emptyText}>Nessun risultato per questa ricerca</Text>
+                </View>
+                )}
         />
         </View>
     )
@@ -41,6 +46,17 @@ const styles = StyleSheet.create({
         lineHeight: 41,
         fontWeight: '700',
         marginBottom: 10
+    },
+    emptyContainer: { 
+        width: 350,
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: 24
+    },
+    emptyText: {
+        color: '#563CF2',
+        fontWeight: '700'
     }
 });
 

@@ -4,12 +4,20 @@ import SearchInput from '../components/SearchInput';
 import yelp from '../api/yelp';
 import useSearch from '../hooks/useSearch';
 import CarouselComponent from '../components/CarouselComponent';
+import NetInfo from "@react-native-community/netinfo";
 
 const HomeScreen = ({navigation}) => {
 
     const [searchValue, setSearch] = useState('');
     const [results, errorMessage, searchApi] = useSearch();
     const [refreshing, setRefreshing] = useState();
+
+    useEffect(() => {
+        NetInfo.fetch().then(state => {
+            console.log("Connection type", state.type);
+            console.log("Is connected?", state.isConnected);
+          });
+      });
 
       
 
@@ -44,7 +52,14 @@ const HomeScreen = ({navigation}) => {
             onChange={(newTerm) => setSearch(newTerm)}
             onEnd={() => searchApi(searchValue)}
        />
-       {errorMessage ? <Text>Qualcosa è andato storto</Text> : null}
+
+    {/* visualizza messaggio di errore connessione qui, come sotto */}
+
+       {errorMessage ? 
+       <View style={styles.warning}>
+        <Text style={styles.warningText}>Qualcosa è andato storto</Text>
+        </View> 
+        : null}
       
 
        <CarouselComponent navigation={navigation} title="Miglior Qualità Prezzo" results={filterByPrice('$')} />   
@@ -60,6 +75,16 @@ const styles = StyleSheet.create({
     containerStyle: {
         backgroundColor: '#ffffff',
         paddingLeft: 20
+    },
+    warning: {
+        backgroundColor: '#F2D53C',
+        marginRight: 20,
+        paddingHorizontal: 18,
+        paddingVertical: 12
+    },
+    warningText: {
+        color: '#ffffff',
+        fontWeight: '700'
     }
 });
 
