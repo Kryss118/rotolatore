@@ -12,7 +12,11 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator initialRouteName="Cerca Ristoranti">
       <Stack.Screen name="Cerca Ristoranti" component={HomeScreen} />
-      <Stack.Screen name="Details" component={DetailScreen} />
+      <Stack.Screen 
+          name="Details" 
+          component={DetailScreen}
+          options={({route}) => ({title: route.params.title})}
+          />
     </Stack.Navigator>
   </NavigationContainer>  
   );

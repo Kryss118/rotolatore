@@ -3,17 +3,25 @@ import {
     View, 
     Text, 
     FlatList, 
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity
 } from 'react-native'
 import ItemComponent from './ItemComponent';
 
-const CarouselComponent = ({title, results}) => {
+const CarouselComponent = ({title, results, navigation}) => {
+
     return (
         <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
         <FlatList 
             data={results}
-            renderItem={({item}) => <ItemComponent item={item} />}
+            renderItem={({item}) => (
+                <TouchableOpacity onPress={() => 
+                navigation.navigate('Details', { title: item.name, image: item.image_url})}>
+                    <ItemComponent item={item} />
+                </TouchableOpacity>
+        
+    )}
             keyExtractor={(item) => item.id}
             horizontal
             showsHorizontalScrollIndicator={false}

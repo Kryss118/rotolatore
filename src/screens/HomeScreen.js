@@ -5,7 +5,8 @@ import yelp from '../api/yelp';
 import useSearch from '../hooks/useSearch';
 import CarouselComponent from '../components/CarouselComponent';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
+
     const [searchValue, setSearch] = useState('');
     const [results, errorMessage, searchApi] = useSearch();
     const [refreshing, setRefreshing] = useState();
@@ -29,7 +30,9 @@ const HomeScreen = () => {
     return (
         <View>
     <ScrollView style={styles.containerStyle} 
-                refreshControl={<RefreshControl 
+                refreshControl={<RefreshControl  
+                   
+                    
                     refreshing={refreshing} 
                     onRefresh={() => {
                         searchApi('')
@@ -44,9 +47,9 @@ const HomeScreen = () => {
        {errorMessage ? <Text>Qualcosa è andato storto</Text> : null}
       
 
-       <CarouselComponent title="Miglior Qualità Prezzo" results={filterByPrice('$')} />   
-       <CarouselComponent title="Un po' costosi" results={filterByPrice('$$')}/>   
-       <CarouselComponent title="Hai voglia di spendere?" results={filterByPrice('$$$' && '$$$$')}/>   
+       <CarouselComponent navigation={navigation} title="Miglior Qualità Prezzo" results={filterByPrice('$')} />   
+       <CarouselComponent navigation={navigation} title="Un po' costosi" results={filterByPrice('$$')}/>   
+       <CarouselComponent navigation={navigation} title="Hai voglia di spendere?" results={filterByPrice('$$$' && '$$$$')}/>   
     </ScrollView>
 
         </View>
