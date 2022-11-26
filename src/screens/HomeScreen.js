@@ -7,8 +7,8 @@ const HomeScreen = ({ navigation }) => {
     const [abilitaPuls, setAbilitaPuls] = useState(false)
     
     const controlla = ()=> {
-      if (campagne.id.length===1){
-        alert(campagne.nome[0])
+      if (campagne.length===1){
+        alert(campagne[0].nome)
     } else {
       navigation.navigate('Scegli')
     }}

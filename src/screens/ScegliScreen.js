@@ -1,29 +1,34 @@
 import React, {useState, useEffect} from 'react';
-import { Text, StyleSheet, View, Button, FlatList, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, Button, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { campagne } from '../saves/data.json';
 
 const ScegliScreen = ({navigation}) => {
+    const [dati, setDati]=useState(campagne)
+
+    /* ELIMINO LA RIGA BIANCA */
+    useEffect(()=>{
+        setDati((current) => current.filter((dati) => dati.id !== 0));
+        console.log(dati)
+    },[])
 
     return (
         <View style={styles.containerStyle}>
             <View>
-                <Text style={styles.titoloStyle}>Scegli Gruppo</Text>
+                <Text style={styles.titoloStyle}>Scegli la Campagna</Text>
             </View>
-            <View style={styles.containerStyle}>
-                <FlatList
-                    data={campagne}
-                    showsVerticalScrollIndicator={false}
-                    renderItem={({item}) =>(
-                        <TouchableOpacity
-                            style={styles.campagneStyle}
-                            /*onPress={()=> scegliCampagna({nome: item.nome})}*/>
-                            <Text style={styles.testoStyle}>{item.campagne.nome}</Text>
-                        </TouchableOpacity>
-                    )}
-                    keyExtractor={(item, key) => item.campagne.id}
-            
-                />
-            </View>
+                <ScrollView>
+                    <FlatList
+                        data={dati}
+                        renderItem={({item})=> (
+                            <TouchableOpacity
+                                style={styles.campagneStyle}
+                                onPress={()=> navigation.navigate('Rotola', {campagna: item.nome})}>
+                                    <Text style={styles.testoStyle}>{item.nome}</Text>
+                            </TouchableOpacity>
+                        )}
+                        keyExtractor={(item, key)=> item.id}
+                    />
+                </ScrollView>
         </View>
     )
 }

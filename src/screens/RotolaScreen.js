@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { Text, StyleSheet, View, Button, FlatList, TouchableOpacity } from 'react-native';
 
-const RotolaScreen = ({navigation}) => {
-
+const RotolaScreen = ({navigation, campagna}) => {
+    console.log(campagna)
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.titoloStyle}>Rotola</Text>
+            <Text style={styles.titoloStyle}>{campagna}</Text>
         </View>
     )
 }

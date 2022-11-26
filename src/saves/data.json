@@ -1,8 +1,10 @@
 {
-    "campagne":{
-        "id":[0, 1, 2, 3],
-        "nome": ["Nessuna campagna salvata", "Tiamat", "Waterdeep", "Cormir"]
-    },
+    "campagne":[
+        {"id":0, "nome": "Nessuna campagna salvata"},
+        {"id":1, "nome": "Tiamat"},
+        {"id":2, "nome": "Waterdeep"},
+        {"id":3, "nome": "Cormir"}
+    ],
     "personaggi":{
         "campagna":["1", "1", "2", "2", "3"],
         "id":["1", "2", "1", "2", "1"],
