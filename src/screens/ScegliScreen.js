@@ -8,7 +8,6 @@ const ScegliScreen = ({navigation}) => {
     /* ELIMINO LA RIGA BIANCA */
     useEffect(()=>{
         setDati((current) => current.filter((dati) => dati.id !== 0));
-        console.log(dati)
     },[])
 
     return (
@@ -22,7 +21,7 @@ const ScegliScreen = ({navigation}) => {
                         renderItem={({item})=> (
                             <TouchableOpacity
                                 style={styles.campagneStyle}
-                                onPress={()=> navigation.navigate('Rotola', {campagna: item.nome})}>
+                                onPress={()=> navigation.navigate('Rotola', {campagna: item.nome, campId: item.id})}>
                                     <Text style={styles.testoStyle}>{item.nome}</Text>
                             </TouchableOpacity>
                         )}

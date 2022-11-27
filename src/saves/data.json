@@ -5,11 +5,12 @@
         {"id":2, "nome": "Waterdeep"},
         {"id":3, "nome": "Cormir"}
     ],
-    "personaggi":{
-        "campagna":["1", "1", "2", "2", "3"],
-        "id":["1", "2", "1", "2", "1"],
-        "nome":["Skall", "Balthazar", "Errich", "Deon", "Gresaun"],
-        "iniziativa":["1", "3", "3", "4", "2"],
-        "vantaggio":["false", "false", "false", "false", "false"]
-    }
+    "personaggi":[
+        {"camp":1, "id":1, "nome":"Skall", "iniziativa":1, "vantaggio":"false"},
+        {"camp":1, "id":2, "nome":"Brann", "iniziativa":3, "vantaggio":"true"},
+        {"camp":1, "id":3, "nome":"Balthazar", "iniziativa":3, "vantaggio":"false"},
+        {"camp":2, "id":1, "nome":"Errich", "iniziativa":3, "vantaggio":"false"},
+        {"camp":2, "id":2, "nome":"Deon", "iniziativa":2, "vantaggio":"false"},
+        {"camp":3, "id":3, "nome":"Gresaun", "iniziativa":2, "vantaggio":"false"}
+    ]
 }

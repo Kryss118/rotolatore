@@ -20,7 +20,7 @@ export default function App() {
           component={DetailScreen}
           options={({route}) => ({title: route.params.title})}
           />
-      <Stack.Screen name="Rotola" component={RotolaScreen} />
+      <Stack.Screen name="Rotola" component={RotolaScreen} options={({route})=>({title: route.params.title})} />
       <Stack.Screen name="Scegli" component={ScegliScreen} />
       <Stack.Screen name="Gruppo" component={GruppoScreen} />
     </Stack.Navigator>
