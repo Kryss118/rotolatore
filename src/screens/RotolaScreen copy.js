@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Text, StyleSheet, View, Button, FlatList } from 'react-native';
+import { Text, StyleSheet, View, Button, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import PgComponent from '../components/PgComponent';
 import { campagna, personaggi } from '../saves/data.json';
 
@@ -9,8 +9,8 @@ const RotolaScreen = ({route}) => {
 
     useEffect(()=>{
         var temp=[]
-        for (let i = 0; i < personaggi.length; i++){
-            if (personaggi[i].camp === Number(route.params.campId)){
+        for (let i=0; i<personaggi.length; i++){
+            if (personaggi[i].camp===Number(route.params.campId)){
                 temp.push({id: personaggi[i].id, nome: personaggi[i].nome, iniziativa: personaggi[i].iniziativa, vantaggio: personaggi[i].vantaggio, tiro:0, totale:0})
             }
         }
@@ -19,14 +19,11 @@ const RotolaScreen = ({route}) => {
         setPg(temp);
     },[])
 
-    ///devo implementare il vantaggio
-    /// L'ERRORE E' QUI !!!!
     function dado(){
         for (let i=0; i<pg.length; i++){
             let temp = Math.floor(Math.random()*20)+1;
             setPg(pg[i].tiro = temp);
-            let tot = pg[i].iniziativa + temp
-            setPg(pg[i].totale = tot);
+            setPg(pg[i].totale = pg[i].iniziativa + temp);
         }
         console.log(pg)
     }
@@ -34,27 +31,25 @@ const RotolaScreen = ({route}) => {
     return (
         <View style={styles.containerStyle}>
             <Text style={styles.titoloStyle}>Rotola {route.params.campagna}</Text>
-            <View>
                 <FlatList
                     data={pg}
                     extraData={pg.totale}
                     renderItem={({item})=> (
-                        <View>
-                            <PgComponent item={item}/>
+                        <View style={styles.rowStyle}>
+                            <View>
+                                <Text style={styles.testoStyle}>{item.nome} {item.iniziativa}</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.testoStyle}>{item.tiro} {item.totale}</Text>
+                            </View>
                         </View>
                     )}
                     keyExtractor={(item, key)=> item.id}
                 />
-                
-            </View>
             <View>
                 <Button
-                    onPress={() => dado()}
+                    onPress={() => (dado())}
                     title="ROTOLA"
-                />
-                <Button
-                    onPress={() => console.log(pg)}
-                    title="VISUALIZZA"
                 />
             </View>
         </View>
