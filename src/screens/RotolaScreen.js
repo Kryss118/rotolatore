@@ -19,16 +19,29 @@ const RotolaScreen = ({route}) => {
         setPg(temp);
     },[])
 
-    ///devo implementare il vantaggio
-    /// L'ERRORE E' QUI !!!!
+    ///devo implementare il vantaggio ed i pareggi
     function dado(){
         for (let i=0; i<pg.length; i++){
             let temp = Math.floor(Math.random()*20)+1;
-            setPg(pg[i].tiro = temp);
+            let tiroTemp = pg
+            tiroTemp[i]={...tiroTemp[i], tiro: temp}
+            setPg(tiroTemp)
             let tot = pg[i].iniziativa + temp
-            setPg(pg[i].totale = tot);
+            let totTemp = pg
+            totTemp[i]={...totTemp[i], totale: tot}
+            setPg(totTemp)
         }
-        console.log(pg)
+        let temp = []
+        for (let i=0; i<pg.length; i++){
+            temp.push({tiro: pg[i].totale, bonus: pg[i].iniziativa, id: i})
+        }
+        temp.sort((a, b) => (a.tiro < b.tiro) ? 1 : -1)
+        let temp2 = []
+        for (let i=0; i<temp.length; i++){
+            let ics = temp[i].id
+            temp2.push(pg[ics])
+        }
+        setPg(temp2)
     }
 
     return (
@@ -45,7 +58,6 @@ const RotolaScreen = ({route}) => {
                     )}
                     keyExtractor={(item, key)=> item.id}
                 />
-                
             </View>
             <View>
                 <Button
