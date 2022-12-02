@@ -11,18 +11,25 @@ const RotolaScreen = ({route}) => {
         var temp=[]
         for (let i = 0; i < personaggi.length; i++){
             if (personaggi[i].camp === Number(route.params.campId)){
-                temp.push({id: personaggi[i].id, nome: personaggi[i].nome, iniziativa: personaggi[i].iniziativa, vantaggio: personaggi[i].vantaggio, tiro:0, totale:0})
+                temp.push({id: personaggi[i].id, nome: personaggi[i].nome, iniziativa: personaggi[i].iniziativa, vantaggio: personaggi[i].vantaggio, immagine:personaggi[i].immagine, tiro:0, totale:0})
             }
         }
-        temp.push({id: personaggi.length, nome: "Nemico 1", iniziativa: 0, vantaggio: "false", tiro:0, totale:0});
-        temp.push({id: personaggi.length+1, nome: "Nemico 2", iniziativa: 0, vantaggio: "false", tiro:0, totale:0});
+        temp.push({id: personaggi.length, nome: "Nemico 1", iniziativa: 0, vantaggio: "false", immagine: "../immagini/monster.png", tiro:0, totale:0});
+        temp.push({id: personaggi.length+1, nome: "Nemico 2", iniziativa: 0, vantaggio: "false", immagine: "../immagini/monster.png", tiro:0, totale:0});
         setPg(temp);
     },[])
 
-    ///devo implementare il vantaggio ed i pareggi
+    ///devo sistemare i pareggi
     function dado(){
         for (let i=0; i<pg.length; i++){
             let temp = Math.floor(Math.random()*20)+1;
+            if (pg[i].vantaggio==="true"){
+                let tempTemp = Math.floor(Math.random()*20)+1;
+                if (temp<tempTemp){
+                    console.log("sostituisco ", temp, " con ", tempTemp)
+                    temp = tempTemp
+                }
+            }
             let tiroTemp = pg
             tiroTemp[i]={...tiroTemp[i], tiro: temp}
             setPg(tiroTemp)
@@ -31,6 +38,7 @@ const RotolaScreen = ({route}) => {
             totTemp[i]={...totTemp[i], totale: tot}
             setPg(totTemp)
         }
+        /// ordino i tiri
         let temp = []
         for (let i=0; i<pg.length; i++){
             temp.push({tiro: pg[i].totale, bonus: pg[i].iniziativa, id: i})
