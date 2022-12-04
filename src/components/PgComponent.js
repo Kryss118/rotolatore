@@ -1,17 +1,18 @@
 import { Text, StyleSheet, View, Image } from 'react-native';
 
 const PgComponent = ({item}) => {
-
+    
     /// le immagini non si vedono ancora (dal file json)
 
-    let pippo = "(v)"
+    let simboloV = "(v)"
+
     return (
         <View style={styles.rowStyle}>
             <View style={styles.retangolo}>
-                <Image style={styles.image} source={{uri: item.immagine}}></Image>
+                <Image style={styles.image} source={{ uri: item.immagine }}/>
             </View>
             <View style={styles.retangoloNome}>
-                <Text style={styles.testoStyle}>{item.nome} {item.vantaggio === "true" && pippo}</Text>
+                <Text style={styles.testoStyle}>{item.nome} {item.vantaggio === "true" && simboloV}</Text>
                 
             </View>
             <View style={styles.retangolo}>
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         width:120,
         height:60
     },
-    image: {
+    image:{
         width: 60,
         height: 60
     }
