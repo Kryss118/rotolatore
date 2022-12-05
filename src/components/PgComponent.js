@@ -5,11 +5,11 @@ const PgComponent = ({item}) => {
     /// le immagini non si vedono ancora (dal file json)
 
     let simboloV = "(v)"
-
+    console.log(typeof(item.immagine))
     return (
         <View style={styles.rowStyle}>
             <View style={styles.retangolo}>
-                <Image style={styles.image} source={{ uri: item.immagine }}/>
+                <Image style={styles.image} source={ item.immagine }/>
             </View>
             <View style={styles.retangoloNome}>
                 <Text style={styles.testoStyle}>{item.nome} {item.vantaggio === "true" && simboloV}</Text>
