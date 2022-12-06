@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Text, StyleSheet, View, TextInput, Button, FlatList, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, FlatList } from 'react-native';
 import GruppoComponent from '../components/GruppoComponent';
 import { campagne } from '../saves/data.json';
 
@@ -8,12 +8,19 @@ const GruppoScreen = ({navigation}) => {
     const [campagna, setCampagna] = useState("")
     const [idCampagna, setIdCampagna] = useState(campagne.length)
     const [visualizza, setVisualizza] = useState(true)
-    const [personaggio, setPersonaggio] = useState([])
+    const [personaggio, setPersonaggio] = useState([{camp: idCampagna, id: 1, nome: "nome", iniziativa: 0, vantaggio: "false", immagine: "../assets/immagini/monster2.png"}])
 
     function salva1(){
         setVisualizza(false);
-        let temp = []
-        setPersonaggio({camp: idCampagna, id: 1, nome: "nome", iniziativa: 0, vantaggio: "false", immagine: "../assets/immagini/monster2.png"})
+    }
+
+    function aggiungi(){
+        let nuovoId = (personaggio.length + 1)
+        let temp = {camp: idCampagna, id: nuovoId, nome: "nome", iniziativa: 0, vantaggio: "false", immagine: "../assets/immagini/monster2.png"}
+        let temp2 = personaggio
+        temp2.push(temp)
+        setPersonaggio(temp2)
+        console.log(personaggio)
     }
 
     return (
@@ -46,13 +53,19 @@ const GruppoScreen = ({navigation}) => {
                 <View>
                     <FlatList
                         data={personaggio}
-                        extraData={personaggio.id}
+                        extraData={(personaggio.length, personaggio.vantaggio)}
                         renderItem={({item})=> (
                             <View>
                                 <GruppoComponent item={item}/>
                             </View>
                         )}
                         keyExtractor={(item, key)=> item.id}
+                    />
+                </View>
+                <View>
+                    <Button
+                        onPress={aggiungi}
+                        title="Aggiungi PG"
                     />
                 </View>
             </View>
