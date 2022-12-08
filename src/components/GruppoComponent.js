@@ -1,7 +1,7 @@
-import { Text, StyleSheet, View, Image, Button } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { Text, StyleSheet, View, Image, Button, TextInput, CheckBox } from 'react-native';
 
 const GruppoComponent = ({item}) => {
-
 
     return (
         <View style={styles.rowStyle}>
@@ -9,22 +9,35 @@ const GruppoComponent = ({item}) => {
                 <Text style={styles.testoStyle}>PG {item.id}</Text>
             </View>
             <View  style={styles.retangoloNome}>
-                <Text style={styles.testoStyle}>{item.nome}</Text>
+            <TextInput
+                    style={styles.textInput}
+                    placeholder={"Nome"}
+                    onChangeText={(newTerm)=> item.nome=(newTerm)}
+                    autoCorrect={false}
+                    autoCapitalize={'none'}
+                    onEndEditing={(newTerm)=> item.nome=(item.nome + newTerm)}
+                />
             </View>
-            <View  style={styles.retangoloNome}>
-                <Text style={styles.testoStyle}>bonus: {item.iniziativa}</Text>
-                <View>
-                    <Button
-                        onPress={()=> item.iniziativa = item.iniziativa + 1}
-                        title="+"
-                    />
-                    <Button
-                        onPress={()=> item.iniziativa = item.iniziativa - 1}
-                        title="-"
-                    />
+            <View style={styles.retangoloNome}>
+                <View style={styles.rowStyle}>
+                    <Text style={styles.testoStyle}>bonus: {item.iniziativa}</Text>
+                    <View style={styles.rowStyle2}>
+                        <Button
+                            onPress={()=> (item.iniziativa = item.iniziativa + 1)}
+                            title="+"
+                        />
+                        <Button
+                            onPress={()=> (item.iniziativa = item.iniziativa - 1)}
+                            title="-"
+                        />
+                    </View>
                 </View>
             </View>
             <View  style={styles.retangolo}>
+                <CheckBox
+                    value={Boolean(item.vantaggio)}
+                    onValueChange={()=> {if (item.vantaggio === false){item.vantaggio=true}else{item.vantaggio=false}}}
+                />
                 <Text style={styles.testoStyle}>{item.vantaggio}</Text>
             </View>
         </View>
@@ -41,6 +54,10 @@ const styles = StyleSheet.create({
       },
     rowStyle:{
         flexDirection:"row",
+        alignSelf:"center"
+    },
+    rowStyle2:{
+        flexDirection:"column",
         alignSelf:"center"
     },
     retangolo:{
@@ -65,7 +82,7 @@ const styles = StyleSheet.create({
         flex: 1,
         color: "#FF9999",
         textAlign:"center",
-        fontSize:24
+        fontSize:20
     }
 });
 

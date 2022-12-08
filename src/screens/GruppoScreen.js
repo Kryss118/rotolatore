@@ -16,7 +16,7 @@ const GruppoScreen = ({navigation}) => {
 
     function aggiungi(){
         let nuovoId = (personaggio.length + 1)
-        let temp = {camp: idCampagna, id: nuovoId, nome: "nome", iniziativa: 0, vantaggio: "false", immagine: "../assets/immagini/monster2.png"}
+        let temp = {camp: idCampagna, id: nuovoId, nome: "", iniziativa: 0, vantaggio: false, immagine: "../assets/immagini/monster2.png"}
         let temp2 = personaggio
         temp2.push(temp)
         setPersonaggio(temp2)
@@ -53,7 +53,7 @@ const GruppoScreen = ({navigation}) => {
                 <View>
                     <FlatList
                         data={personaggio}
-                        extraData={(personaggio.length, personaggio.vantaggio)}
+                        extraData={(personaggio.length, personaggio.nome, personaggio.bonus, personaggio.vantaggio)}
                         renderItem={({item})=> (
                             <View>
                                 <GruppoComponent item={item}/>
