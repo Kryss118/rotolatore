@@ -14,8 +14,8 @@ const RotolaScreen = ({route}) => {
                 temp.push({id: personaggi[i].id, nome: personaggi[i].nome, iniziativa: personaggi[i].iniziativa, vantaggio: personaggi[i].vantaggio, immagine:personaggi[i].immagine, tiro:0, totale:0})
             }
         }
-        temp.push({id: personaggi.length, nome: "Nemico 1", iniziativa: 0, vantaggio: "false", immagine: "../assets/immagini/monster2.png", tiro:0, totale:0});
-        temp.push({id: personaggi.length+1, nome: "Nemico 2", iniziativa: 0, vantaggio: "false", immagine: "../assets/immagini/monster2.png", tiro:0, totale:0});
+        temp.push({id: personaggi.length, nome: "Nemico 1", iniziativa: 0, vantaggio: false, immagine: "../assets/immagini/monster2.png", tiro:0, totale:0});
+        temp.push({id: personaggi.length+1, nome: "Nemico 2", iniziativa: 0, vantaggio: false, immagine: "../assets/immagini/monster2.png", tiro:0, totale:0});
         setPg(temp);
     },[])
 

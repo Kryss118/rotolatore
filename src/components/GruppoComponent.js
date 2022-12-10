@@ -3,6 +3,8 @@ import { Text, StyleSheet, View, Image, Button, TextInput, CheckBox } from 'reac
 
 const GruppoComponent = ({item}) => {
 
+    /* NON SI AGGIORNA */
+
     return (
         <View style={styles.rowStyle}>
             <View  style={styles.retangolo}>
@@ -35,10 +37,15 @@ const GruppoComponent = ({item}) => {
             </View>
             <View  style={styles.retangolo}>
                 <CheckBox
-                    value={Boolean(item.vantaggio)}
-                    onValueChange={()=> {if (item.vantaggio === false){item.vantaggio=true}else{item.vantaggio=false}}}
+                    value={item.vantaggio}
+                    onValueChange={()=> {
+                        if (item.vantaggio === false){
+                            item.vantaggio=true
+                        }else{
+                            item.vantaggio=false}
+                    }}
                 />
-                <Text style={styles.testoStyle}>{item.vantaggio}</Text>
+                <Text style={styles.testoStyle}>{String(item.vantaggio)}</Text>
             </View>
         </View>
     )

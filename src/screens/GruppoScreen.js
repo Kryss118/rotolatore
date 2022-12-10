@@ -8,7 +8,7 @@ const GruppoScreen = ({navigation}) => {
     const [campagna, setCampagna] = useState("")
     const [idCampagna, setIdCampagna] = useState(campagne.length)
     const [visualizza, setVisualizza] = useState(true)
-    const [personaggio, setPersonaggio] = useState([{camp: idCampagna, id: 1, nome: "nome", iniziativa: 0, vantaggio: "false", immagine: "../assets/immagini/monster2.png"}])
+    const [personaggio, setPersonaggio] = useState([{camp: idCampagna, id: 1, nome: "", iniziativa: 0, vantaggio: false, immagine: "../assets/immagini/monster2.png"}])
 
     function salva1(){
         setVisualizza(false);
@@ -53,13 +53,14 @@ const GruppoScreen = ({navigation}) => {
                 <View>
                     <FlatList
                         data={personaggio}
-                        extraData={(personaggio.length, personaggio.nome, personaggio.bonus, personaggio.vantaggio)}
+                        extraData={(personaggio.length, personaggio.nome, personaggio.iniziativa, personaggio.vantaggio)}
                         renderItem={({item})=> (
                             <View>
                                 <GruppoComponent item={item}/>
                             </View>
                         )}
                         keyExtractor={(item, key)=> item.id}
+                        showsVerticalScrollIndicator={false}
                     />
                 </View>
                 <View>

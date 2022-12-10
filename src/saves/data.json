@@ -6,11 +6,11 @@
         {"id":3, "nome": "Cormir"}
     ],
     "personaggi":[
-        {"camp":1, "id":1, "nome":"Skall", "iniziativa":1, "vantaggio":"false", "immagine":"require('./assets/immagini/monster2.png')"},
-        {"camp":1, "id":2, "nome":"Brann", "iniziativa":3, "vantaggio":"true", "immagine":"../assets/immagini/monster2.png"},
-        {"camp":1, "id":3, "nome":"Balthazar", "iniziativa":3, "vantaggio":"false", "immagine":"../assets/immagini/monster2.png"},
-        {"camp":2, "id":1, "nome":"Errich", "iniziativa":3, "vantaggio":"false", "immagine":"../assets/immagini/monster2.png"},
-        {"camp":2, "id":2, "nome":"Deon", "iniziativa":2, "vantaggio":"false", "immagine":"../assets/immagini/monster2.png"},
-        {"camp":3, "id":1, "nome":"Gresaun", "iniziativa":2, "vantaggio":"false", "immagine":"../assets/immagini/monster2.png"}
+        {"camp":1, "id":1, "nome":"Skall", "iniziativa":1, "vantaggio":false, "immagine":"require('./assets/immagini/monster2.png')"},
+        {"camp":1, "id":2, "nome":"Brann", "iniziativa":3, "vantaggio":true, "immagine":"../assets/immagini/monster2.png"},
+        {"camp":1, "id":3, "nome":"Balthazar", "iniziativa":3, "vantaggio":false, "immagine":"../assets/immagini/monster2.png"},
+        {"camp":2, "id":1, "nome":"Errich", "iniziativa":3, "vantaggio":false, "immagine":"../assets/immagini/monster2.png"},
+        {"camp":2, "id":2, "nome":"Deon", "iniziativa":2, "vantaggio":false, "immagine":"../assets/immagini/monster2.png"},
+        {"camp":3, "id":1, "nome":"Gresaun", "iniziativa":2, "vantaggio":false, "immagine":"../assets/immagini/monster2.png"}
     ]
 }

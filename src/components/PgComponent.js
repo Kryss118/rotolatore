@@ -14,7 +14,7 @@ const PgComponent = ({item}) => {
                 <Image style={styles.image} source={ item.immagine }/>
             </View>
             <View style={styles.retangoloNome}>
-                <Text style={styles.testoStyle}>{item.nome} {item.vantaggio === "true" && simboloV}</Text>
+                <Text style={styles.testoStyle}>{item.nome} {item.vantaggio === true && simboloV}</Text>
             </View>
             <View style={styles.retangolo}>
                 <Text style={styles.testoStyle}>{item.iniziativa}</Text>
