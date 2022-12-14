@@ -72,14 +72,14 @@ const styles = StyleSheet.create({
         borderColor:"red",
         justifyContent:"center",
         width:60,
-        height:60
+        height:80
     },
     retangoloNome:{
         borderWidth:1,
         borderColor:"red",
         justifyContent:"center",
         width:120,
-        height:60
+        height:80
     },
     image:{
         width: 60,
