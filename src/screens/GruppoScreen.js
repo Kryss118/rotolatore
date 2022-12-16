@@ -27,12 +27,15 @@ const GruppoScreen = ({ navigation }) => {
 
     function salvaTutto(){
         campagne.push({id: idCampagna, nome: campagna})
-        for (let i = 0; i<personaggio.length; i++){
+        for (let i = 0; i < personaggio.length; i++){
             personaggi.push(personaggio[i])
         }
         navigation.navigate('Scegli')
         console.log(campagne)
         console.log(personaggi)
+
+        ///PROVA
+
     }
 
     return (
